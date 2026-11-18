@@ -43,6 +43,31 @@ Para otra sección, repite los pasos con otra consulta en blanco y cambia
 Abre tu archivo de Power BI y da clic en **Actualizar**. Los datos nuevos se
 publican los jueves por la mañana.
 
+## Cómo platicar con los datos desde Claude
+
+Hay un conector para que Claude consulte estos mismos datos. Se agrega una vez:
+
+1. En Claude abre **Configuración → Conectores**.
+2. Elige **Agregar conector personalizado**.
+3. Nombre: `SNIIM`. Dirección: `https://sniim-precios.netlify.app/mcp`
+4. Guarda. No pide usuario ni contraseña.
+
+Después pregunta normal, por ejemplo: *"Con el conector SNIIM, ¿cómo ha estado
+el precio del aguacate Hass en Guadalajara este año, mes por mes?"*
+
+El plan gratis de Claude permite un conector personalizado.
+
+**Para que cuadre con Power BI:** Claude calcula el promedio simple de
+`precio_frec` (en azúcar, de `precio`) sobre las filas que cumplen los filtros,
+igual que `AVERAGE` en Power BI. Usa en Power BI los mismos filtros que Claude
+te diga que usó (producto, fechas, destino, etc.). Ojo: en frutas y hortalizas
+un mismo nombre puede tener varias calidades con distinto `producto_id`
+(por ejemplo Aguacate Hass: 133 primera, 136 extra, 137 súper extra); Claude
+consulta una a la vez.
+
+La carpeta `mcp/` son los mismos datos partidos por producto para que el
+conector responda rápido; no hace falta usarla en Power BI.
+
 ## Cosas que conviene saber
 
 - Frutas y hortalizas es grande (unas 600 mil filas por año, 15 millones en
